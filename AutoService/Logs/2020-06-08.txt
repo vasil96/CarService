@@ -1,0 +1,348 @@
+2020-06-08 12:21:25,672 [36] ERROR App  
+ Method: Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 47
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 225
+InnerException:System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:6401e38a-76f4-4f29-ae8f-793b105fe50b
+Error Number:8152,State:13,Class:16 
+ 
+2020-06-08 12:21:25,724 [36] ERROR App  
+ 
+Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":-2147482647,"Data":"2020-06-08T12:21:25.1307407+03:00","SlujNomer":433,"RegNomer":"54544","Probeg":5454,"Vodach":"5454454","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":null,"HCNosachiZadniDaNe":null,"HCAmortisioriZadni":"ЛЯВ, ДЕСЕН, ПРУЖИНА ЛЯВА, ПРУЖИНА ДЯСНА, РЕГЛАЖНА ЩАНГА ДЯСНА, РЕГЛАЖНА ЩАНГА ЛЯВА","HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":"РЕЙКА ЛУФТ, РЕЙКА ТЕЧ, ВЪТРЕШЕН НАКРАЙНИК ЛЯВ, ВЪТРЕШЕН НАКРАЙНИК ДЕСЕН, ВЪНШЕН НАКРАЙНИК ЛЯВ, ВЪНШЕН НАКРАЙНИК ДЕСЕН, МАНШОН ЛЯВ, МАНШОН ДЕСЕН","HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":false,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-06-08 12:21:25,739 [36] ERROR App  
+ 
+Queue Data:null 
+ 
+2020-06-08 12:55:27,354 [35] ERROR App  
+ Method: Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 47
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 225
+InnerException:System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:bf4ab5d2-2fa0-42d1-93c3-46240596e348
+Error Number:8152,State:13,Class:16 
+ 
+2020-06-08 12:55:27,396 [35] ERROR App  
+ 
+Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":-2147482647,"Data":"2020-06-08T12:55:27.1226836+03:00","SlujNomer":433,"RegNomer":"54544","Probeg":54544,"Vodach":"Тошко Тодоров","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":"ЛЯВ НОСАЧ, ДЕСЕН НОСАЧ, ЛЯВ ВЪТРЕШЕН ТАМПОН, ДЕСЕН ВЪТРЕШЕН ТАМПОН, ЛЯВА ВТУЛКА ШЕНКЕЛ, ДЯСНА ВТУЛКА ШЕНКЕЛ","HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":false,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-06-08 12:55:27,397 [35] ERROR App  
+ 
+Queue Data:null 
+ 
+2020-06-08 13:25:21,196 [43] ERROR App  
+ Method: Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 47
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 225
+InnerException:System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:bf4ab5d2-2fa0-42d1-93c3-46240596e348
+Error Number:8152,State:13,Class:16 
+ 
+2020-06-08 13:25:21,197 [43] ERROR App  
+ 
+Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":-2147482646,"Data":"2020-06-08T13:25:21.1015361+03:00","SlujNomer":433,"RegNomer":"54544","Probeg":54544,"Vodach":"Тошко Тодоров","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":"ЛЯВ НОСАЧ, ДЕСЕН НОСАЧ, ЛЯВ ВЪТРЕШЕН ТАМПОН, ДЕСЕН ВЪТРЕШЕН ТАМПОН, ЛЯВА ВТУЛКА ШЕНКЕЛ, ДЯСНА ВТУЛКА ШЕНКЕЛ","HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":false,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-06-08 13:25:21,198 [43] ERROR App  
+ 
+Queue Data:null 
+ 
+2020-06-08 14:48:51,569 [89] ERROR App  
+ Method: Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 47
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 225
+InnerException:System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:bf4ab5d2-2fa0-42d1-93c3-46240596e348
+Error Number:8152,State:13,Class:16 
+ 
+2020-06-08 14:48:51,585 [89] ERROR App  
+ 
+Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":-2147482645,"Data":"2020-06-08T14:48:51.5067215+03:00","SlujNomer":433,"RegNomer":"54544","Probeg":54544,"Vodach":"Тошко Тодоров","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":"ЛЯВ НОСАЧ, ДЕСЕН НОСАЧ, ЛЯВ ВЪТРЕШЕН ТАМПОН, ДЕСЕН ВЪТРЕШЕН ТАМПОН, ЛЯВА ВТУЛКА ШЕНКЕЛ, ДЯСНА ВТУЛКА ШЕНКЕЛ","HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":false,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-06-08 14:48:51,585 [89] ERROR App  
+ 
+Queue Data:null 
+ 
+2020-06-08 14:49:07,594 [87] ERROR App  
+ Method: Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 47
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 225
+InnerException:System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:bf4ab5d2-2fa0-42d1-93c3-46240596e348
+Error Number:8152,State:13,Class:16 
+ 
+2020-06-08 14:49:07,595 [87] ERROR App  
+ 
+Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":-2147482644,"Data":"2020-06-08T14:49:07.5376081+03:00","SlujNomer":433,"RegNomer":"54544","Probeg":54544,"Vodach":"Тошко Тодоров","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":"ЛЯВ НОСАЧ, ДЕСЕН НОСАЧ, ЛЯВ ВЪТРЕШЕН ТАМПОН, ДЕСЕН ВЪТРЕШЕН ТАМПОН, ЛЯВА ВТУЛКА ШЕНКЕЛ, ДЯСНА ВТУЛКА ШЕНКЕЛ","HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":false,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-06-08 14:49:07,596 [87] ERROR App  
+ 
+Queue Data:null 
+ 
+2020-06-08 14:49:16,680 [89] ERROR App  
+ Method: Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 47
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 225
+InnerException:System.Data.SqlClient.SqlException (0x80131904): String or binary data would be truncated.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:bf4ab5d2-2fa0-42d1-93c3-46240596e348
+Error Number:8152,State:13,Class:16 
+ 
+2020-06-08 14:49:16,681 [89] ERROR App  
+ 
+Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":-2147482643,"Data":"2020-06-08T14:49:16.6288106+03:00","SlujNomer":433,"RegNomer":"54544","Probeg":54544,"Vodach":"Тошко Тодоров","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":"ЛЯВ НОСАЧ, ДЕСЕН НОСАЧ, ЛЯВ ВЪТРЕШЕН ТАМПОН, ДЕСЕН ВЪТРЕШЕН ТАМПОН, ЛЯВА ВТУЛКА ШЕНКЕЛ, ДЯСНА ВТУЛКА ШЕНКЕЛ","HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":false,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-06-08 14:49:16,681 [89] ERROR App  
+ 
+Queue Data:null 
+ 

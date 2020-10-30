@@ -1,0 +1,100 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Models.User>
+
+@{
+    ViewData["Title"] = "Потребители - ";
+    var number = 0;
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+}
+<h4>ПОТРЕБИТЕЛИ</h4>
+<hr>
+<br /><br />
+<form method="post">
+    <p>
+        <a asp-action="add" title="Нов потребител" data-toggle="tooltip" ]>
+            <i class="fas fa-user-plus"></i>
+        </a>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Псевдоним
+                </th>
+                <th>
+                    Име
+                </th>
+                <th>
+                    Презиме
+                </th>
+                <th>
+                    Фамилия
+                </th>
+                <th>
+                    Парола
+                </th>
+                <th>
+                    Роля
+                </th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(++number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MiddleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @AutoServiceWebSite.Controllers.UserController.GetRoleName(item.RoleId)
+                    </td>
+                    <td align="center">
+                        <a asp-area="" asp-controller="User" asp-action="Edit" target="_self" asp-route-id="@item.UserId" title="Редактирай" data-toggle="tooltip">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td align="center">
+                        @if (Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)) == item.UserId)
+                        {
+                            <i class="fas fa-trash-alt disable"></i>
+                        }
+                        else
+                        {
+                            <a asp-area="" asp-controller="User" asp-action="Delete" target="_self" asp-route-id="@item.UserId" title="Изтрий" data-toggle="tooltip">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+                @Html.AntiForgeryToken()
+            }
+            <tr><td colspan="14" height="25"></td></tr>
+        </tbody>
+    </table>
+    <br /><br />
+
+</form>

@@ -1,0 +1,1000 @@
+﻿
+
+@model Models.ProtocolView
+
+@{
+    ViewData["Title"] = "Протокол - ";
+    var initValue = ViewBag.WaitingTime * 60;
+}
+@section Styles{
+    <link href="@Url.Content("~/css/circle.css")" rel="stylesheet" type="text/css" />
+}
+@section Scripts{
+    <script type="text/javascript">
+        var timerInstance, skipChangeEventAvtomobilatENeIzpraven = false, skipChangeEventAvtomobilatEIzpraven = false;
+        $(function () {
+            $('.selectpicker').selectpicker({
+                noneSelectedText: ''
+            });
+            $('.selectpicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                var selectValue = $(this).closest('.bootstrap-select').find('button .filter-option').html();
+                $(this).closest('.bootstrap-select').parent().find('.hidden').val(selectValue);
+            });
+
+            $('#AvtomobilatEIzpraven').on('change', function () {
+                if (!skipChangeEventAvtomobilatEIzpraven) {
+                    skipChangeEventAvtomobilatENeIzpraven = true;
+                    if (this.checked) {
+                        $('#AvtomobilatENeIzpraven').attr('checked', 'checked');
+                        $('.is-regular .btn-danger').addClass('active')
+
+                    }
+                    else {
+                        $('#AvtomobilatENeIzpraven').removeAttr('checked');
+                        $('.is-regular .btn-danger').removeClass('active')
+                    }
+                }
+                else {
+                    skipChangeEventAvtomobilatEIzpraven = false;
+                }
+            })
+            $('#AvtomobilatENeIzpraven').on('change', function () {
+                if (!skipChangeEventAvtomobilatENeIzpraven) {
+                    skipChangeEventAvtomobilatEIzpraven = true;
+                    if (this.checked) {
+                        $('#AvtomobilatEIzpraven').attr('checked', 'checked');
+                        $('.is-regular .btn-success').addClass('active')
+
+                    }
+                    else {
+                        $('#AvtomobilatEIzpraven').removeAttr('checked');
+                        $('.is-regular .btn-success').removeClass('active')
+                    }
+                }
+                else {
+                    skipChangeEventAvtomobilatENeIzpraven = false;
+                }
+            })
+            $('a.incomplete').hide();
+            $('#fade').show();
+
+            $('[checked="checked"]').closest('.btn').addClass('active focus');
+
+            $('.btn.add').on('click', function () {
+                $(this).parent().find('.disabled').show();
+            })
+        })
+
+    </script>
+}
+
+<h4>НОВ ПРОТОКОЛ</h4>
+<hr />
+<div class="row">
+    <form asp-action="Add">
+        <div class="col-md-6">
+            <div class="form-group">
+
+            </div>
+        </div><div class="col-md-6">
+            <div class="form-group">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+            </div>
+        </div><div class="col-md-6">
+            <div class="form-group" id="datetimepicker">
+                <label asp-for="Data" class="control-label">Дата</label>
+                <input type="text" readonly value="@Html.DisplayFor(m=>m.Data)" class="form-control" />
+                <input type="hidden" asp-for="Data" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="SlujNomer" class="control-label">Сл. №</label>
+                <input asp-for="SlujNomer" class="form-control" />
+            </div>
+        </div><div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="RegNomer" class="control-label">Рег. №</label>
+                <input asp-for="RegNomer" class="form-control" />
+            </div>
+        </div><div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Probeg" class="control-label">Пробег</label>
+                <input asp-for="Probeg" class="form-control" />
+            </div>
+        </div><div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Vodach" class="control-label">Водач</label>
+                <input asp-for="Vodach" class="form-control" />
+            </div>
+        </div>
+        <div class="protocol-common-field">
+            <div id="protocol" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="vynshenVid">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#vynshenVidContent" aria-expanded="false" aria-controls="vynshenVidContent">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ВЪНШЕН ВИД</span>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="vynshenVidContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="vynshenVid">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VVHigiena" class="control-label">Хигиена</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="VVHigienaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="VVHigiena" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VVBroni" class="control-label">Брони</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="VVBroniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker" asp-items="@(new SelectList(Model.VVBroniOption,"VVBroniOptionValue", "VVBroniOptionValue" ))"></select>
+                                    <input asp-for="VVBroni" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VVKalnici" class="control-label">Калници</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="VVKalniciDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker" asp-items="@(new SelectList(Model.VVKalniciOption,"VVKalniciOptionValue", "VVKalniciOptionValue" ))"></select>
+                                    <input asp-for="VVKalnici" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VVVrati" class="control-label">Врати</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="VVVratiDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker" asp-items="@(new SelectList(Model.VVVratiOption,"VVVratiOptionValue", "VVVratiOptionValue" ))"></select>
+                                    <input asp-for="VVVrati" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VVStykla" class="control-label">Стъкла</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="VVStyklaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker" asp-items="@(new SelectList(Model.VVStyklaOption,"VVStyklaOptionValue", "VVStyklaOptionValue" ))"></select>
+                                    <input asp-for="VVStykla" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VVDrugi" class="control-label">Други</label>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-5">
+                                    <select asp-for="VVDrugi" class="form-control" asp-items="@(new SelectList(Model.VVDrugiOption,"VVDrugiOptionValue", "VVDrugiOptionValue" ))"></select>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="zadvijvashtAgregat">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#zadvijvashtAgregatContent" aria-expanded="false" aria-controls="zadvijvashtAgregatContent">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ЗАДВИЖВАЩ АГРЕГАТ</span>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="zadvijvashtAgregatContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="zadvijvashtAgregat">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZADvigatel" class="control-label">Двигател</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ZADvigatelDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ТЕЧ ГАРНИТУРА КЛАПАНИ">ТЕЧ ГАРНИТУРА КЛАПАНИ</option>
+                                        <option value="ТАМПОН ДВИГАТЕЛ ЛЯВ">ТАМПОН ДВИГАТЕЛ ЛЯВ</option>
+                                        <option value="ТАМПОН ДВИГАТЕЛ ДЕСЕН">ТАМПОН ДВИГАТЕЛ ДЕСЕН</option>
+                                        <option value="ТАМПОН ДВИГАТЕЛ ПРЕДЕН ">ТАМПОН ДВИГАТЕЛ ПРЕДЕН</option>
+                                        <option value="ТАМПОН ДВИГАТЕЛ ЗАДЕН ">ТАМПОН ДВИГАТЕЛ ЗАДЕН</option>
+                                    </select>
+                                    <input asp-for="ZADvigatel" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZaRemyci" class="control-label">Ремъци</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ZaRemyciDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ZaRemyci" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZAOhlajdashtaUredba" class="control-label">Охлаждаща уредба</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ZAOhlajdashtaUredbaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ТЕЧ ВОДНА ПОМПА">ТЕЧ ВОДНА ПОМПА</option>
+                                        <option value="ТЕЧ МАРКУЧ">ТЕЧ МАРКУЧ</option>
+                                    </select>
+                                    <input asp-for="ZAOhlajdashtaUredba" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZAGorivnaUredba" class="control-label">Горивна уредба</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ZAGorivnaUredbaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ZAGorivnaUredba" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZAIzpuskatelnaUredba" class="control-label">Изпускателна уредба</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ZAIzpuskatelnaUredbaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select asp-for="ZAIzpuskatelnaUredba" class="form-control">
+                                        <option value=""></option>
+                                        <option value="МЕКА ВРЪЗКА">МЕКА ВРЪЗКА</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZAMazilnaUredba" class="control-label">Мазилна уредба</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ZAMazilnaUredbaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ZAMazilnaUredba" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ZADrugi" class="control-label">Други</label>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ZADrugi" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="transmisiy">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#transmisiyContent" aria-expanded="false" aria-controls="transmisiyContent">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ТРАНСМИСИЯ</span>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="transmisiyContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="transmisiy">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="TMSyedinitel" class="control-label">Съединител</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="TMSyedinitelDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="TMSyedinitel" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="TMSkorostnaKutiqIDiferencial" class="control-label">Скоростна кутия и диференциал</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="TMSkorostnaKutiqIDiferencialDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="TMSkorostnaKutiqIDiferencial" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="TMDrugi" class="control-label">Други</label>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="TMDrugi" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="hodovaChast">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#hodovaChastContent" aria-expanded="false" aria-controls="hodovaChastContent">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ХОДОВА ЧАСТ</span>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="hodovaChastContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="hodovaChast">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCHodoviKolela" class="control-label">Ходови колела</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCHodoviKolelaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="СКЪСАНА ШПИЛКА">СКЪСАНА ШПИЛКА</option>
+                                        <option value="ГУМИ ПРЕДНИ">ГУМИ ПРЕДНИ</option>
+                                        <option value="ГУМИ ЗАДНИ">ГУМИ ЗАДНИ</option>
+                                    </select>
+                                    <input asp-for="HCHodoviKolela" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCTamponiMF" class="control-label">Тампони МФ</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCTamponiMFDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ">ЛЯВ</option>
+                                        <option value="ДЕСЕН">ДЕСЕН</option>
+                                    </select>
+                                    <input asp-for="HCTamponiMF" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCAmortisioriPredni" class="control-label">Амортисьори предни</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCAmortisioriPredniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ">ЛЯВ</option>
+                                        <option value="ДЕСЕН">ДЕСЕН</option>
+                                        <option value="ПРУЖИНИ">ПРУЖИНИ</option>
+                                    </select>
+                                    <input asp-for="HCAmortisioriPredni" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCNosachiPredni" class="control-label">Носачи предни</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCNosachiPredniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ ">ЛЯВ</option>
+                                        <option value="ДЕСЕН">ДЕСЕН</option>
+                                        <option value="ПРЕДЕН ТАМПОН">ПРЕДЕН ТАМПОН</option>
+                                        <option value="ЗАДЕН ТАМПОН">ЗАДЕН ТАМПОН</option>
+                                    </select>
+                                    <input asp-for="HCNosachiPredni" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCSharnirniBoltove" class="control-label">Шарнирни болтове</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCSharnirniBoltoveDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ ">ЛЯВ</option>
+                                        <option value="ДЕСЕН">ДЕСЕН</option>
+                                    </select>
+                                    <input asp-for="HCSharnirniBoltove" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCKareta" class="control-label">Карета</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCKaretaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ВЪНШНО ЛЯВО">ВЪНШНО ЛЯВО</option>
+                                        <option value="ВЪНШНО ДЯСНО">ВЪНШНО ДЯСНО</option>
+                                        <option value="ВЪРЕШНО ЛЯВО">ВЪТРЕШНО ЛЯВО</option>
+                                        <option value="ВЪТРЕШНО ДЯСНО">ВЪТРЕШНО ДЯСНО</option>
+                                    </select>
+                                    <input asp-for="HCKareta" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCManshoni" class="control-label">Маншони</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCManshoniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ">ЛЯВ</option>
+                                        <option value="ДЕСЕН">ДЕСЕН</option>
+                                        <option value="ВЪТРЕШЕН">ВЪТРЕШЕН</option>
+                                        <option value="ВЪНШЕН">ВЪНШЕН</option>
+                                    </select>
+                                    <input asp-for="HCTamponiMF" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCNosachiZadni" class="control-label">Носачи задни</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCNosachiZadniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ НОСАЧ ">ЛЯВ НОСАЧ</option>
+                                        <option value="ДЕСЕН НОСАЧ">ДЕСЕН НОСАЧ</option>
+                                        <option value="ЛЯВ ВЪТРЕШЕН ТАМПОН">ЛЯВ ВЪТРЕШЕН ТАМПОН</option>
+                                        <option value="ДЕСЕН ВЪТРЕШЕН ТАМПОН">ДЕСЕН ВЪТРЕШЕН ТАМПОН</option>
+                                        <option value="ЛЯВА ВТУЛКА ШЕНКЕЛ">ЛЯВА ВТУЛКА ШЕНКЕЛ</option>
+                                        <option value="ДЯСНА ВТУЛКА ШЕНКЕЛ">ДЯСНА ВТУЛКА ШЕНКЕЛ</option>
+                                    </select>
+                                    <input asp-for="HCNosachiZadni" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCAmortisioriZadni" class="control-label">Амортисьори задни</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCAmortisioriZadniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ЛЯВ">ЛЯВ</option>
+                                        <option value="ДЕСЕН">ДЕСЕН</option>
+                                        <option value="ПРУЖИНА ЛЯВА">ПРУЖИНА ЛЯВА</option>
+                                        <option value="ПРУЖИНА ДЯСНА">ПРУЖИНА ДЯСНА</option>
+                                        <option value="РЕГЛАЖНА ЩАНГА ДЯСНА">РЕГЛАЖНА ЩАНГА ДЯСНА</option>
+                                        <option value="РЕГЛАЖНА ЩАНГА ЛЯВА">РЕГЛАЖНА ЩАНГА ЛЯВА</option>
+                                    </select>
+                                    <input asp-for="HCAmortisioriZadni" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCLageri" class="control-label">Лагери</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCLageriDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ПРЕДЕН ЛЯВ">ПРЕДЕН ЛЯВ</option>
+                                        <option value="ПРЕДЕН ДЕСЕН">ПРЕДЕН ДЕСЕН</option>
+                                        <option value="ЗАДЕН ЛЯВ">ЗАДЕН ЛЯВ</option>
+                                        <option value="ЗАДЕН ДЕСЕН">ЗАДЕН ДЕСЕН</option>
+                                    </select>
+                                    <input asp-for="HCLageri" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCSpirachnaUredba" class="control-label">Спирачна уредба</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCSpirachnaUredbaDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ПРЕДНИ НАКЛАДКИ">ПРЕДНИ НАКЛАДКИ</option>
+                                        <option value="ЗАДНИ НАКЛАДКИ">ЗАДНИ НАКЛАДКИ</option>
+                                        <option value="СПИР. ДИСКОВЕ ПРЕДНИ">СПИР. ДИСКОВЕ ПРЕДНИ</option>
+                                        <option value="СПИР. ДИСКОВЕ ЗАДНИ">СПИР. ДИСКОВЕ ЗАДНИ</option>
+                                        <option value="СПИР. МАРКУЧ ПРЕДЕН ЛЯВ">СПИР. МАРКУЧ ПРЕДЕН ЛЯВ</option>
+                                        <option value="СПИР. МАРКУЧ ПРЕДЕН ДЕСЕН">СПИР. МАРКУЧ ПРЕДЕН ДЕСЕН</option>
+                                        <option value="СПИР. МАРКУЧ ЗАДЕН ЛЯВ">СПИР. МАРКУЧ ЗАДЕН ЛЯВ</option>
+                                        <option value="СПИР. МАРКУЧ ЗАДЕН ДЕСЕН">СПИР. МАРКУЧ ЗАДЕН ДЕСЕН</option>
+                                        <option value="СПИРАЧЕН АПАРАТ ПРЕДЕН ЛЯВ">СПИРАЧЕН АПАРАТ ПРЕДЕН ЛЯВ</option>
+                                        <option value="СПИРАЧЕН АПАРАТ ПРЕДЕН ДЕСЕН">СПИРАЧЕН АПАРАТ ПРЕДЕН ДЕСЕН</option>
+                                        <option value="СПИРАЧЕН АПАРАТ ЗАДЕН ЛЯВ">СПИРАЧЕН АПАРАТ ЗАДЕН ЛЯВ</option>
+                                        <option value="СПИРАЧЕН АПАРАТ ЗАДЕН ДЕСЕН">СПИРАЧЕН АПАРАТ ЗАДЕН ДЕСЕН</option>
+                                    </select>
+                                    <input asp-for="HCSpirachnaUredba" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCStabilizirashtiShtangiITamponi" class="control-label">Стаб. щанги и тампони</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCStabilizirashtiShtangiITamponiDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ПРЕДНИ">ПРЕДНИ</option>
+                                        <option value="ЗАДНИ">ЗАДНИ</option>
+                                    </select>
+                                    <input asp-for="HCStabilizirashtiShtangiITamponi" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCKormilnoUpravlenie" class="control-label">Кормилно управление</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCKormilnoUpravlenieDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="РЕЙКА ЛУФТ">РЕЙКА ЛУФТ</option>
+                                        <option value="РЕЙКА ТЕЧ">РЕЙКА ТЕЧ</option>
+                                        <option value="ВЪТРЕШЕН НАКРАЙНИК ЛЯВ">ВЪТРЕШЕН НАКРАЙНИК ЛЯВ</option>
+                                        <option value="ВЪТРЕШЕН НАКРАЙНИК ДЕСЕН">ВЪТРЕШЕН НАКРАЙНИК ДЕСЕН</option>
+                                        <option value="ВЪНШЕН НАКРАЙНИК ЛЯВ">ВЪНШЕН НАКРАЙНИК ЛЯВ</option>
+                                        <option value="ВЪНШЕН НАКРАЙНИК ДЕСЕН">ВЪНШЕН НАКРАЙНИК ДЕСЕН</option>
+                                        <option value="МАНШОН ЛЯВ">МАНШОН ЛЯВ</option>
+                                        <option value="МАНШОН ДЕСЕНЯВ">МАНШОН ДЕСЕН</option>
+                                    </select>
+                                    <input asp-for="HCKormilnoUpravlenie" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCGeometriaPredenIZadenMost" class="control-label">Геометрия преден и заден мост</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCGeometriaPredenIZadenMostDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ТАМПОНИ ПРЕДЕН МОСТ">ТАМПОНИ ПРЕДЕН МОСТ</option>
+                                        <option value="ТАМПОНИ ЗАДЕН МОСТ">ТАМПОНИ ЗАДЕН МОСТ</option>
+                                    </select>
+                                    <input asp-for="HCGeometriaPredenIZadenMost" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCBealeti" class="control-label">Беалети</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="HCBealetiDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ПРЕДНА ЛЯВА">ПРЕДНА ЛЯВА</option>
+                                        <option value="ЗАДНА ЛЯВА">ЗАДНА ЛЯВА</option>
+                                        <option value="ПРЕДНА ДЯСНА">ПРЕДНА ДЯСНА</option>
+                                        <option value="ЗАДНА ДЯСНА">ЗАДНА ДЯСНА</option>
+                                    </select>
+                                    <input asp-for="HCBealeti" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="HCDrugi" class="control-label">Други</label>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="HCDrugi" class="form-control" />
+                                </div>
+                            </div>
+                            <br /><br /><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="elektricheskaSistema">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#elektricheskaSistemaContent" aria-expanded="false" aria-controls="elektricheskaSistemaContent">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ЕЛЕКТРИЧЕСКА СИСТЕМА</span>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="elektricheskaSistemaContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="elektricheskaSistema">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESKlimatik" class="control-label">Климатик</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ESKlimatikDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select asp-for="ESKlimatik" class="form-control">
+                                        <option value=""></option>
+                                        <option value="НЕ РАБОТИ">НЕ РАБОТИ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESAkumulator" class="control-label">Акумулатор</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ESAkumulatorDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select asp-for="ESAkumulator" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ЗА СМЯНА">ЗА СМЯНА</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESStarterIGenerator" class="control-label">Стартер и Генератор</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ESStarterIGeneratorDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="СТАРТЕР ЗА РЕМОНТ">СТАРТЕР ЗА РЕМОНТ</option>
+                                        <option value="ГЕНЕРАТОР ЗА РЕМОНТ">ГЕНЕРАТОР ЗА РЕМОНТ</option>
+                                    </select>
+                                    <input asp-for="ESStarterIGenerator" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESArmaturnoTablo" class="control-label">Арматурно табло</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ESArmaturnoTabloDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ESArmaturnoTablo" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESChistachki" class="control-label">Чистачки</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ESChistachkiDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ESChistachki" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESSvetlini" class="control-label">Светлини</label>
+                                </div>
+                                <div class="col-md-1">
+                                    <select asp-for="ESSvetliniDaNe" class="form-control">
+                                        <option value=""></option>
+                                        <option value="ДА">ДА</option>
+                                        <option value="Не">Не</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <select multiple class="form-control selectpicker">
+                                        <option value="ФАРОВЕ">ФАРОВЕ</option>
+                                        <option value="СТОПОВЕ">СТОПОВЕ</option>
+                                        <option value="МИГАЧИ">МИГАЧИ</option>
+                                        <option value="ЗАДНА">ЗАДНА</option>
+                                        <option value="ПЛАФОН">ПЛАФОН</option>
+                                        <option value="НОМЕР">НОМЕР</option>
+                                    </select>
+                                    <input asp-for="ESSvetlini" type="hidden" class="hidden" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="ESDrugi" class="control-label">Други</label>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="ESDrugi" class="form-control" />
+                                </div>
+                            </div>
+                            <br /><br /> <br /><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="drugi">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#drugiContent" aria-expanded="false" aria-controls="drugiContent">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ДРУГИ</span>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="drugiContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="drugi">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="DRReklamnaTabela" class="control-label">Рекламна табела</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <select asp-for="DRReklamnaTabela" class="form-control">
+                                        <option value=""></option>
+                                        <option value="НЕ СВЕТИ">НЕ СВЕТИ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="DRValidnostUTG" class="control-label">Валидност на УТГ:</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="DRValidnostUTG" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="vlojeniChasti">
+                        <h2 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#protocol" href="#vlojeniChastiContent" aria-expanded="false" aria-controls="vlojeniChasti">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon glyphicon-minus"></i>
+                                <span>ВЛОЖЕНИ ЧАСТИ</span>
+                            </a>
+                        </h2>
+                    </div>
+                    <div id="vlojeniChastiContent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="vlojeniChastiContent">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-md-5">
+                                    <label asp-for="VlojeniChasti" class="control-label">Вложени части</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <input asp-for="VlojeniChasti" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group is-regular">
+                <div class="col-md-5" data-toggle="buttons">
+                    <label asp-for="AvtomobilatENeIzpraven" class="btn btn-danger">
+                        <input asp-for="AvtomobilatENeIzpraven" />
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label><label asp-for="AvtomobilatEIzpraven">&nbsp;&nbsp;&nbsp;НЕ Е ИЗПРАВЕН</label>
+                </div><div class="col-md-5" data-toggle="buttons">
+                    <label asp-for="AvtomobilatEIzpraven" class="btn btn-success">
+                        <input asp-for="AvtomobilatEIzpraven" />
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label><label asp-for="AvtomobilatEIzpraven">&nbsp;&nbsp;&nbsp;ИЗПРАВЕН</label>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-5">
+                    <label asp-for="Mehanik" class="control-label">Механик</label>
+                </div>
+                <div class="col-md-5">
+                    <input asp-for="Mehanik" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-5" data-toggle="buttons">
+                    <label asp-for="IsBlock" class="btn btn-warning">
+                        <input asp-for="IsBlock" />
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label><label asp-for="IsBlock">&nbsp;&nbsp;&nbsp;БЛОКИРАЙ МЯСТО</label>
+                </div>
+                <div class="col-md-5">
+                    <select class="form-control" asp-for="PlaceId" asp-items="@(new SelectList(Model.Place,"PlaceId", "PlaceId" ))"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group button-panel">
+            <div class="col-md-5">
+                <input asp-action="AddExternal" type="submit" value="Запиши" class="btn btn-default add" name="add" />
+                <div class="disabled" style="width:131px;"></div>
+            </div>
+            <div class="col-md-5 right">
+                <input asp-action="CancelExternal" type="submit" value="Откажи" class="btn btn-default btn-danger" name="cancel" id="cancel" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ValidationSummary()
+        </div>
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+    </form>
+</div>
+
+
+

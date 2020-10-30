@@ -1,0 +1,97 @@
+﻿@using Models;
+@using System.Collections.Generic;
+@using System.Linq;
+
+@model List<Models.PlaceUIRead>
+@{
+    ViewData["Title"] = "Редактиране места -";
+}
+
+@section Styles{
+    <style>
+        label {
+            min-width: 120px;
+        }
+
+        .funkyradio label {
+            margin-top: 0 !important;
+        }
+
+        .col-md-2, .col-md-3, .col-md-4 {
+            float: left !important;
+        }
+    </style>
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('.selectpicker').selectpicker({
+                noneSelectedText: 'Изберете опция'
+            });
+        })
+    </script>
+}
+
+<h4>МЕСТА</h4>
+<hr />
+<div class="row">
+    <form asp-action="ExtendEdit" asp-controller="place" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            string name = Model[i].User != null ? Model[i].User.FirstName + " " + @Model[i].User.MiddleName + " " + @Model[i].User.LastName : "";
+
+            <text> @Html.TextBox("places[" + @i + "].PlaceId", Model[i].PlaceId, new { @class = "form-control", @type = "hidden" })</text>
+
+            <div class="col-md-2">
+                <lebel>Място @Model[i].PlaceId</lebel>
+                <div class="form-group funkyradio">
+                    @Html.CheckBox("places[" + @i + "].IsBlock", Model[i].IsBlock, new { @class = "form-control" })
+                    @Html.Label("places[" + @i + "].IsBlock", "Блокирано")
+                </div>
+            </div>
+            <div class="col-md-2">
+                <lebel>Място @Model[i].PlaceId</lebel>
+                <div class="form-group funkyradio">
+                    @Html.CheckBox("places[" + @i + "].IsBusy", Model[i].IsBusy, new { @class = "form-control" })
+                    @Html.Label("places[" + @i + "].IsBusy", "Заето")
+                </div>
+            </div>
+            <div class="col-md-3">
+                <lebel>Място @Model[i].PlaceId - опции</lebel>
+                <select multiple id="places[@i].Option" name="places[@i].Option" class="selectpicker">
+                    @{
+                        foreach (Option option in ViewBag.Options)
+                        {
+                            if (Model[i].Option.Where(b => b.OptionId == option.OptionId).Any())
+                            {
+                                <option selected value="@option.OptionId">@option.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@option.OptionId">@option.Name</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="@Model[i].User.UserId" class="control-label">Механик</label>
+                <input value="@name" readonly class="form-control" />
+            </div>
+            <div class="clearfix"></div>
+        }
+        <br /><br />
+        <div class="form-group button-panel">
+            <div class="col-md-5">
+                <input type="submit" value="Запиши" class="btn btn-default" />
+            </div>
+            @*<div class="col-md-5 right">
+                    <input asp-action="Cancel" type="submit" value="Откажи" class="btn btn-default btn-danger right" />
+                </div>*@
+        </div>
+        <br /><br />
+        @Html.AntiForgeryToken()
+    </form>
+</div>

@@ -1,0 +1,159 @@
+2020-04-28 16:42:57,988 [7] ERROR App  
+ Protocol Data:Models.ProtocolView 
+ 
+2020-04-28 17:13:09,983 [7] ERROR App  
+ Method:Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'SlujNomer', table 'AutoService.dbo.Protocol'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 48
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 227
+InnerException:System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'SlujNomer', table 'AutoService.dbo.Protocol'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:f7999bc9-2ec3-4467-9262-d476e98e66e1
+Error Number:515,State:2,Class:16 
+ 
+2020-04-28 17:13:14,601 [23] ERROR App  
+ Method:Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'SlujNomer', table 'AutoService.dbo.Protocol'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 48
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 227
+InnerException:System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'SlujNomer', table 'AutoService.dbo.Protocol'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:f7999bc9-2ec3-4467-9262-d476e98e66e1
+Error Number:515,State:2,Class:16 
+ 
+2020-04-28 17:13:41,781 [6] ERROR App  
+ Method:Add, Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Cannot insert the value NULL into column 'SlujNomer', table 'AutoService.dbo.Protocol'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(DbContext _, ValueTuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IReadOnlyList`1 entries)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges()
+   at DataAccess.Repositories.RepositoryBase`1.Save() in D:\AutoService\DataAccess\Repositories\RepositoryBase.cs:line 48
+   at AutoServiceWebSite.Controllers.ProtocolController.Add(ProtocolView model) in D:\AutoService\AutoServiceWebSite\Controllers\ProtocolController.cs:line 227
+InnerException:System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'SlujNomer', table 'AutoService.dbo.Protocol'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, DbCommandMethod executeMethod, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+ClientConnectionId:f7999bc9-2ec3-4467-9262-d476e98e66e1
+Error Number:515,State:2,Class:16 
+ 
+2020-04-28 17:14:43,540 [7] ERROR App  
+ Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":119,"Data":"2020-04-28T17:14:43.4719442+03:00","SlujNomer":4333,"RegNomer":"r43e4333","Probeg":564444,"Vodach":"Иван Иванов Иванов","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":null,"HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":null,"HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":null,"HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":true,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 
+2020-04-28 17:41:51,271 [14] ERROR App  
+ Protocol Data:{"VVBroniOption":[{"VVBroniOptionValue":"ПРЕДНА","VVBroniOptionId":1},{"VVBroniOptionValue":"ЗАДНА","VVBroniOptionId":2}],"VVKalniciOption":[{"VVKalniciOptionValue":"ЛЯВ","VVKalniciOptionId":1},{"VVKalniciOptionValue":"ДЕСЕН","VVKalniciOptionId":2},{"VVKalniciOptionValue":"ПРЕДЕН","VVKalniciOptionId":3},{"VVKalniciOptionValue":"ЗАДЕН","VVKalniciOptionId":4}],"VVVratiOption":[{"VVVratiOptionValue":"ЛЯВА ПРЕДНА","VVVratiOptionId":1},{"VVVratiOptionValue":"ЛЯВА ЗАДНА","VVVratiOptionId":2},{"VVVratiOptionValue":"ДЯСНА ПРЕДНА","VVVratiOptionId":3},{"VVVratiOptionValue":"ДЯСНА ЗАДНА","VVVratiOptionId":4}],"VVStyklaOption":[{"VVStyklaOptionValue":"ЧЕЛНО","VVStyklaOptionId":1},{"VVStyklaOptionValue":"СТРАНИЧНО","VVStyklaOptionId":2},{"VVStyklaOptionValue":"ЗАДНО","VVStyklaOptionId":3}],"VVDrugiOption":[{"VVDrugiOptionValue":"","VVDrugiOptionId":1},{"VVDrugiOptionValue":"ПРАГ","VVDrugiOptionId":2}],"Place":null,"PlaceId":0,"QueueId":1,"OptionName":"ТЕХНИЧЕСКИ ОГЛЕД","InLine":true,"ProtocolId":120,"Data":"2020-04-28T17:41:51.0514731+03:00","SlujNomer":2333,"RegNomer":"r43e4333","Probeg":53453,"Vodach":"Иван Иванов Иванов","VVHigiena":null,"VVHigienaDaNe":null,"VVBroni":null,"VVBroniDaNe":null,"VVKalnici":null,"VVKalniciDaNe":null,"VVVrati":null,"VVVratiDaNe":null,"VVStykla":null,"VVStyklaDaNe":null,"VVDrugi":null,"ZADvigatel":null,"ZADvigatelDaNe":null,"ZaRemyci":null,"ZaRemyciDaNe":null,"ZAOhlajdashtaUredba":null,"ZAOhlajdashtaUredbaDaNe":null,"ZAGorivnaUredba":null,"ZAGorivnaUredbaDaNe":null,"ZAIzpuskatelnaUredba":null,"ZAIzpuskatelnaUredbaDaNe":null,"ZAMazilnaUredba":null,"ZAMazilnaUredbaDaNe":null,"ZADrugi":null,"TMSyedinitel":null,"TMSyedinitelDaNe":null,"TMSkorostnaKutiqIDiferencial":null,"TMSkorostnaKutiqIDiferencialDaNe":null,"TMDrugi":null,"HCHodoviKolela":null,"HCHodoviKolelaDaNe":null,"HCTamponiMF":null,"HCTamponiMFDaNe":null,"HCAmortisioriPredni":null,"HCAmortisioriPredniDaNe":null,"HCNosachiPredni":null,"HCNosachiPredniDaNe":null,"HCSharnirniBoltove":null,"HCSharnirniBoltoveDaNe":null,"HCKareta":null,"HCKaretaDaNe":null,"HCManshoni":null,"HCManshoniDaNe":null,"HCNosachiZadni":null,"HCNosachiZadniDaNe":null,"HCAmortisioriZadni":null,"HCAmortisioriZadniDaNe":null,"HCLageri":null,"HCLageriDaNe":null,"HCSpirachnaUredba":null,"HCSpirachnaUredbaDaNe":null,"HCStabilizirashtiShtangiITamponi":"ПРЕДНИ","HCStabilizirashtiShtangiITamponiDaNe":null,"HCKormilnoUpravlenie":null,"HCKormilnoUpravlenieDaNe":null,"HCGeometriaPredenIZadenMost":"ТАМПОНИ ПРЕДЕН МОСТ","HCGeometriaPredenIZadenMostDaNe":null,"HCBealeti":null,"HCBealetiDaNe":null,"HCDrugi":null,"ESKlimatik":null,"ESKlimatikDaNe":null,"ESAkumulator":null,"ESAkumulatorDaNe":null,"ESStarterIGenerator":null,"ESStarterIGeneratorDaNe":null,"ESArmaturnoTablo":null,"ESArmaturnoTabloDaNe":null,"ESChistachki":null,"ESChistachkiDaNe":null,"ESSvetlini":null,"ESSvetliniDaNe":null,"ESDrugi":null,"DRReklamnaTabela":null,"DRValidnostUTG":null,"AvtomobilatEIzpraven":true,"AvtomobilatENeIzpraven":false,"Mehanik":"Иван Иванов Иванов","VlojeniChasti":null,"IsBlock":false,"IsExternal":false,"IsTransfered":false} 
+ 

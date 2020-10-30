@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Настройки апликация -";
+    Layout = "~/Views/Shared/_LoggedLayout.cshtml";
+}
+@model Models.Setting
+@section Scripts{
+    <script type="text/javascript">
+        $('#datetimepicker, #datetimepicker1').datetimepicker({
+            format: 'hh:mm',
+            pick12HourFormat: false,
+            pickDate: false,
+            pickSeconds: false,
+
+        });
+    </script>
+}
+
+<h4>НАСТРОЙКИ АПЛИКАЦИЯ</h4>
+
+<hr />
+<div class="settings">
+    <div class="row">
+        <form asp-action="edit" asp-controller="setting" method="post">
+            <input asp-for="SettingId" class="form-control" type="hidden" />
+            <div class="col-md-5">
+                <div class="form-group">
+                    <div>
+                        <label>Време за оглед</label>
+                    </div>
+                    <input asp-for="CheckingTimeInPlace" class="form-control" /> <span>минути</span>
+                    <span asp-validation-for="CheckingTimeInPlace" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Интервал на опресняване</label>
+                    </div>
+                    <input asp-for="RefreshDataInterval" class="form-control" /> <span>секунди</span>
+                    <span asp-validation-for="RefreshDataInterval" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Време на изчакване</label>
+                    </div>
+                    <input asp-for="WaitingTime" class="form-control" /> <span>минути</span>
+                    <span asp-validation-for="WaitingTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Работно време от</label>
+                    </div>
+                    <div id="datetimepicker" class="input-append date">
+                        <input asp-for="StartWorkingTime" class="form-control" readonly />
+                        <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        </span>
+                    </div>
+                    <span asp-validation-for="StartWorkingTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Работно време до</label>
+                    </div>
+                    <div id="datetimepicker1" class="input-append date">
+                        <input asp-for="EndWorkingTime" class="form-control" readonly />
+                        <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        </span>
+                    </div>
+                    <span asp-validation-for="EndWorkingTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Ключ</label>
+                    </div>
+                    <input asp-for="Token" class="form-control" />
+                    <span asp-validation-for="Token" class="text-danger"></span>
+                </div>
+            </div><div class="col-md-5">
+                <div class="form-group">
+                    <div>
+                        <label>Дистанция</label>
+                    </div>
+                    <input asp-for="AllowDistance" class="form-control" /> <span>метра</span>
+                    <span asp-validation-for="AllowDistance" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Интервал проверка на дистанция</label>
+                    </div>
+                    <input asp-for="CheckAllowDistanceInterval" class="form-control" />
+                    <span asp-validation-for="CheckAllowDistanceInterval" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Географска ширина</label>
+                    </div>
+                    <input asp-for="Latitude" class="form-control" asp-format="{0:N6}" />
+                    <span asp-validation-for="Latitude" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Географска дължина</label>
+                    </div>
+                    <input asp-for="Longitude" class="form-control" asp-format="{0:N6}" />
+                    <span asp-validation-for="Longitude" class="text-danger"></span>
+                </div>
+                <div class="form-group funkyradio">
+                    <input asp-for="IsLimitDistance" />
+                    <label asp-for="IsLimitDistance">В район на сервиза</label>
+                </div>
+            </div>
+            <br /><br />
+            <div class="col-md-5">
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn-default" />
+                </div>
+            </div>
+            @Html.AntiForgeryToken()
+        </form>
+    </div>
+</div>

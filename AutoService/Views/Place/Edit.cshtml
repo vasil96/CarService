@@ -1,0 +1,62 @@
+﻿@using Models;
+
+@model List<Models.Place>
+@{
+    ViewData["Title"] = "Редактиране места -";
+}
+
+@section Styles{
+    <style>
+        label {
+            min-width: 120px;
+        }
+
+        .funkyradio label {
+            margin-top: 0 !important;
+        }
+    </style>
+}
+
+<h4>МЕСТА</h4>
+<hr />
+<div class="row">
+    <form asp-action="Edit" asp-controller="place" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            string name = Model[i].User != null ? Model[i].User.FirstName + " " + @Model[i].User.MiddleName + " " + @Model[i].User.LastName : "";
+
+            <text> @Html.TextBox("places[" + @i + "].PlaceId", Model[i].PlaceId, new { @class = "form-control", @type = "hidden" })</text>
+
+            <div class="col-md-3">
+                <lebel>Място @Model[i].PlaceId</lebel>
+                <div class="form-group funkyradio">
+                    @Html.CheckBox("places[" + @i + "].IsBlock", Model[i].IsBlock, new { @class = "form-control" })
+                    @Html.Label("places[" + @i + "].IsBlock", "Блокирано")
+                </div>
+            </div>
+            <div class="col-md-3">
+                <lebel>Място @Model[i].PlaceId</lebel>
+                <div class="form-group funkyradio">
+                    @Html.CheckBox("places[" + @i + "].IsBusy", Model[i].IsBusy, new { @class = "form-control" })
+                    @Html.Label("places[" + @i + "].IsBusy", "Заето")
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label asp-for="@Model[i].UserId" class="control-label">Механик</label>
+                <input value="@name" readonly class="form-control" />
+            </div>
+        }
+        <br /><br />
+        <div class="form-group button-panel">
+            <div class="col-md-5">
+                <input type="submit" value="Запиши" class="btn btn-default" />
+            </div>
+            @*<div class="col-md-5 right">
+                <input asp-action="Cancel" type="submit" value="Откажи" class="btn btn-default btn-danger right" />
+            </div>*@
+        </div>
+        <br /><br />
+        @Html.AntiForgeryToken()
+    </form>
+</div>

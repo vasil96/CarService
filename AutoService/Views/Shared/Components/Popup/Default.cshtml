@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+    var removeQueueUrl = '/Queue/Remove';
+    $(function () {
+        var modalConfirm = function (callback) {
+
+            $("#open-popup").on("click", function (e) {
+                e.preventDefault();
+                $('#popup .modal-header-icon').html('<i class="fas fa-exclamation-circle"></i>');               
+                $('#popup .modal-body').html("Сигурни ли сте, че искате да изчистите опашката?");
+                $('#popup .modal-footer').show();
+                $("#popup").modal('show');
+            });
+
+            $("#modal-btn-yes").on("click", function () {
+                callback(true);
+                //$("#popup").modal('hide');
+            });
+
+            $("#modal-btn-no").on("click", function () {
+                callback(false);
+                $("#popup").modal('hide');
+            });
+        };
+
+        modalConfirm(function (confirm) {
+            if (confirm) {
+                removeQueue();
+            }
+        });
+    });
+    function removeQueue() {
+        $.ajax({
+            type: "GET",
+            url: removeQueueUrl,
+            success: function (success) {
+                if (success) {
+                    $('#popup .modal-body').html("Успешно изчистване на опашката.")
+                    $('#popup .modal-header-icon').html('<i class="fas fa-thumbs-up"></i>');
+                    $('#popup .modal-footer').hide();
+                    $("#popup").modal('show');
+                }
+                else {
+                    $('#popup .modal-body').html("Неуспешно изчистване на опашката.")
+                    $('#popup .modal-header-icon').html('<i class="fas fa-thumbs-down"></i>');
+                    $('#popup .modal-footer').hide();
+                    $("#popup").modal('show');
+                }
+            },
+            error: function (error) {
+                $('#popup .modal-body').html("Възникна грешка на сървъра.")
+                $('#popup .modal-header-icon').html('<i class="fas fa-bug"></i>');
+                $('#popup .modal-footer').hide();
+                $("#popup").modal('show');
+            }
+        });
+    }
+</script>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="popup">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header-icon"><i class="fas fa-exclamation-circle"></i></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="modal-btn-yes">ДА</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">НЕ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

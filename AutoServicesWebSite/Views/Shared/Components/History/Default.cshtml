@@ -1,0 +1,89 @@
+﻿@using Models;
+@model IList<Protocol>;
+@{
+    var number = 0;
+}
+@foreach (var item in Model)
+{
+<tr class="history-row @(item.IsBlock? "blocked": "")">
+    <td>
+        @(++number)
+    </td>
+    <td align="center">
+        @Html.DisplayFor(m => item.ProtocolId)
+    </td>
+    <td align="center">
+        @Html.DisplayFor(m => item.Data)
+    </td>
+    <td align="center">
+        @Html.DisplayFor(m => item.SlujNomer)
+    </td>
+    <td align="center" data-toggle="buttons">
+        @if (!string.IsNullOrEmpty(item.VlojeniChasti))
+        {
+            <label class="btn btn-danger">
+                <input checked="checked" type="checkbox" />
+                <span class="glyphicon glyphicon-ok"></span>
+            </label>
+        }
+    </td>
+    <td align="center" data-toggle="buttons">
+        <label for="@item.IsTransfered" class="btn btn-warning">
+            @Html.CheckBoxFor(m => item.IsTransfered, new { data_protocol_id = item.ProtocolId })
+            <span class="glyphicon glyphicon-ok"></span>
+        </label>
+    </td>
+    <td align="center">
+        @Html.DisplayFor(m => item.Probeg)
+    </td>
+    <td>
+        @Html.DisplayFor(m => item.Vodach)
+    </td>
+    <td align="center">
+        @if (item.AvtomobilatEIzpraven)
+        {
+            <text>ДА</text>
+        }
+        else
+        {
+            <text>НЕ</text>
+            }
+
+    </td>
+    @*<td align="center">
+        @if (item.AvtomobilatENeIzpraven)
+        {
+            <text>ДА</text>
+        }
+        else
+        {
+            <text>НЕ</text>
+        }
+    </td>*@
+    <td>
+        @Html.DisplayFor(m => item.Mehanik)
+    </td>
+    <td>
+        <a href="javascript:void(0);" class="anchor detail" data-protocol-id="@item.ProtocolId" title="Преглед" data-toggle="tooltip"><i class="fas fa-eye"></i></a>
+    </td>
+    <td>
+        <button class="anchorExportExcel" id="ToExcel" name="ToExcel" value="@item.ProtocolId" asp-action="FromCellToExcel" title="Свали" data-toggle="tooltip">
+            <i class="fas fa-file-download"></i>
+        </button>
+    </td>
+    <td>
+        <a class="anchorExportExcel" asp-area="" asp-controller="Protocol" asp-action="ExportToPDF" asp-route-id="@item.ProtocolId" title="Принтирай" data-toggle="tooltip" target="_blank">
+            <i class="fas fa-print"></i>
+        </a>
+    </td>
+    @if (item.IsBlock)
+    {
+        <td align="center">
+            <a asp-area="" asp-controller="Protocol" asp-action="Edit" target="_self" asp-route-id="@item.ProtocolId" title="Редактирай" data-toggle="tooltip">
+                <i class="fas fa-edit"></i>
+            </a>
+        </td>
+    }
+</tr>
+}
+<tr><td colspan="14" height="25"></td></tr>

@@ -1,0 +1,201 @@
+﻿@using Models;
+@model IList<Protocol>;
+@{
+    ViewData["Title"] = "История -";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        var protocolDetailsUrl = '/Protocol/Details',
+            editProtocolUrl = '/Protocol/Edit',
+            setTransferedUrl = '/Protocol/Transfered',
+            getHistory = '/Protocol/HistoryFromAjax';
+        $(function () {
+            $("#close").on('click', function () {
+                $('#myModal').modal('hide');
+            });
+            $('#dateTimeFrom, #dateTimeTo').datetimepicker({
+                format: 'dd-MM-yyyy',
+                pickDate: true,
+                pickTime: false
+            }).on('changeDate', function (ev) {
+                var date = (new Date(ev.date)).toISOString();
+                if ($(this).hasClass('dateFrom'))
+                    $('#dateFrom').val(date);
+                else
+                    $('#dateTo').val(date);
+            });           
+            RefreshHistory();
+        });
+        function RefreshHistory() {
+            var dateFrom = $('#dateFrom').val().replace(/\./g,'/'),
+                dateTo = $('#dateTo').val().replace(/\./g, '/'),
+                slujNomer = $('#SlujNomer').val(),
+                regNomer = $('#RegNomer').val(),
+                mehanik = $('#Mehanik').val()
+            $.ajax({
+                type: "GET",
+                url: getHistory + "/?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&SlujNomer=" + slujNomer + "&RegNomer=" + regNomer + "&Mehanik=" + mehanik,
+                success: function (data) {
+                    $('#historyPanel').html(data);
+                    InitEvents();
+                    setTimeout(RefreshHistory, 10000);
+                },
+                error: function (error) {
+                    location.reload();
+                }
+            });
+        }
+        function InitEvents() {
+            $('[data-toggle="tooltip"]').tooltip()
+            $('[checked="checked"]').closest('.btn').addClass('active focus');
+            $('input[type=checkbox]').on('change', function () {
+
+                var protocolId = $(this).data('protocol-id');
+                $.ajax({
+                    type: "GET",
+                    url: setTransferedUrl + "/?protocolId=" + protocolId + "&isTransfered=" + $(this).prop("checked"),
+                    success: function (data) {
+
+                    },
+                    error: function (error) {
+                        location.reload();
+                    }
+                });
+            })
+            $(".anchor").click(function () {
+                var $buttonClicked = $(this);
+                var protocolId = $buttonClicked.data('protocol-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: $buttonClicked.hasClass('detail') ? protocolDetailsUrl : editProtocolUrl,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "protocolId": protocolId },
+                    datatype: "json",
+                    success: function (data) {
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+                        $('[checked="checked"]').closest('.btn').addClass('active focus');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+        }
+    </script>
+}
+
+@section Styles{
+    <style>
+        .input-append.date .add-on i {
+            width: 14px;
+            height: 14px;
+            margin-top: 6px;
+        }
+
+        .btn-default {
+            margin: 0;
+            padding: 10px;
+        }
+
+        .col-md-4 {
+            vertical-align: top;
+        }
+
+            .col-md-4.pull-right {
+                margin-top: 15px;
+            }
+
+        .fix input {
+            width: 89%;
+        }
+    </style>
+}
+<h4>ИСТОРИЯ ПРОТОКОЛИ</h4>
+<hr />
+<form method="post" enctype="multipart/form-data">
+    <div class="panel-filter row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Сл. №</label>
+                <input class="form-control" name="SlujNomer" id="SlujNomer" type="number" value="@ViewBag.SlujNomer" />
+            </div>
+        </div><div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Рег. №</label>
+                <input class="form-control" name="RegNomer" id="RegNomer" value="@ViewBag.RegNomer" />
+            </div>
+        </div><div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Механик</label>
+                <input class="form-control" name="Mehanik" id="Mehanik" value="@ViewBag.Mehanik" />
+            </div>
+        </div>
+        <div class="col-md-4 fix">
+            <div class="form-group">
+                <div>
+                    <label>от</label>
+                </div>
+                <div class="input-append date dateFrom" id="dateTimeFrom" data-date-format="dd-MM-yyyy">
+                    <input class="form-control" type="text" readonly value="@ViewBag.dateFromString">
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                <input type="hidden" name="dateFrom" id="dateFrom" value="@ViewBag.dateFrom" />
+            </div>
+        </div><div class="col-md-4 fix">
+            <div class="form-group">
+                <div>
+                    <label>до</label>
+                </div>
+                <div class="input-append date dateTo" id="dateTimeTo" data-date-format="dd-MM-yyyy">
+                    <input class="form-control" type="text" readonly value="@ViewBag.dateToString">
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+                <input type="hidden" name="dateTo" id="dateTo" value="@ViewBag.dateTo" />
+            </div>
+        </div><div class="col-md-4 pull-right">
+            <div>
+            </div>
+            <button class="btn btn-default">търси</button>
+        </div>
+    </div>
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Пр. №</th>
+                <th>Дата</th>
+                <th>Сл. №</th>
+                <th>Вл. части</th>
+                <th>Приключен</th>
+                <th>Пробег</th>
+                <th>Водач</th>
+                <th>Изправен</th>
+                @*<th>Неизправен</th>*@
+                <th>Механик</th>
+                <th colspan="4"></th>
+            </tr>
+        </thead>
+        <tbody id="historyPanel">
+        </tbody>
+    </table>
+    <br /><br /><br /><br />
+    @Html.AntiForgeryToken()
+</form>
+
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+

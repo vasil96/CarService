@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_AnonymousLayout";
+
+}
+
+@model AutoServicesWebSite.Models.Login
+
+<form asp-action="Login" asp-controller="User" method="post" class="login-form">
+    <div>
+        <h4>ВХОД В СИСТЕМАТА</h4>
+    </div>
+    <div>
+        <label asp-for="UserName">Потребител</label>
+        <input asp-for="UserName" placeholder="Потребител" />
+    </div>
+    <div>
+        <label asp-for="Password">Парола</label>
+        <input asp-for="Password" placeholder="Парола" type="password" />
+    </div>
+    <div>
+        <label asp-for="PlaceId">Място</label>
+        <select asp-for="PlaceId" asp-items="@(new SelectList(Model.Places,"PlaceId","PlaceId"))"></select>
+    </div>
+    <div>
+        <button class="btn-default">ВЛИЗАНЕ</button>
+        @Html.ValidationSummary()
+    </div>
+    <br /><br />    
+    @Html.AntiForgeryToken()
+</form>
+
